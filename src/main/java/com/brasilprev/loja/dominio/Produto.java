@@ -64,4 +64,6 @@ public class Produto {
     public String getUrlFoto() {
         return urlFoto;
     }
+
+    public Long getId() { return id; }
 }

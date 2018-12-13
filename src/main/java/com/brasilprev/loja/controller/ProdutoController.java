@@ -1,16 +1,13 @@
 package com.brasilprev.loja.controller;
 
-import com.brasilprev.loja.dominio.Produto;
 import com.brasilprev.loja.servico.produto.IServicoDeConsultaDeProduto;
+import com.brasilprev.loja.servico.produto.IServicoDeCriacaoDeProduto;
 import com.brasilprev.loja.servico.produto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +16,12 @@ import java.util.Optional;
 @RequestMapping("/v1/produtos")
 public class ProdutoController {
     private IServicoDeConsultaDeProduto servicoDeConsultaDeProduto;
+    private IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto;
 
     @Autowired
-    public ProdutoController(IServicoDeConsultaDeProduto servicoDeConsultaDeProduto) {
+    public ProdutoController(IServicoDeConsultaDeProduto servicoDeConsultaDeProduto, IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto) {
         this.servicoDeConsultaDeProduto = servicoDeConsultaDeProduto;
+        this.servicoDeCriacaoDeProduto = servicoDeCriacaoDeProduto;
     }
 
     @GetMapping
@@ -43,6 +42,8 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<ConfirmacaoDeSucesso> criarProduto(AdicionaProdutoHttpDto adicionaProdutoHttpDto){
+        ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDeProduto.criar(adicionaProdutoHttpDto);
 
+        return new ResponseEntity<>(confirmacaoDeSucesso, HttpStatus.CREATED);
     }
 }
