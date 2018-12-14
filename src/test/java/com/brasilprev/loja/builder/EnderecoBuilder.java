@@ -4,10 +4,10 @@ import com.brasilprev.loja.dominio.Endereco;
 
 public class EnderecoBuilder {
     private String rua = "rua";
-    private String bairro = "rua";
-    private String cidade = "rua";
-    private String estado = "rua";
-    private String cep = "rua";
+    private String bairro = "bairro";
+    private String cidade = "cidade";
+    private String estado = "estado";
+    private String cep = "cep";
 
     private EnderecoBuilder(){
     }

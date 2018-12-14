@@ -1,6 +1,7 @@
 package com.brasilprev.loja.dominio;
 
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
+import com.brasilprev.loja.servico.categoria.CategoriaDTO;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -32,13 +33,18 @@ public class Produto {
     }
 
     public static Produto criar(Categoria categoria, String nomeProduto, BigDecimal preco, Integer quantidade, String descricao, String urlFoto){
-        validarCamposObrigatorios(categoria);
+        validarCamposObrigatorios(categoria, nomeProduto, preco, quantidade);
 
         return new Produto(categoria, nomeProduto, preco, quantidade, descricao, urlFoto);
     }
 
-    private static void validarCamposObrigatorios(Categoria categoria) {
-        new ExcecaoDeCampoObrigatorio().quandoNulo(categoria, "É obrigatório informar uma categoria para o produto.").entaoDispara();
+    private static void validarCamposObrigatorios(Categoria categoria, String nomeProduto, BigDecimal preco, Integer quantidade) {
+        new ExcecaoDeCampoObrigatorio()
+                .quandoNulo(categoria, "É obrigatório informar uma categoria para o produto.")
+                .quandoNuloOuVazio(nomeProduto, "É obrigatório informar um nome para o produto.")
+                .quandoNulo(preco, "É obrigatório informar um preço para o produto.")
+                .quandoNulo(quantidade, "É obrigatório informar uma quantidade para o produto.")
+                .entaoDispara();
     }
 
     public Categoria getCategoria() {
@@ -66,4 +72,15 @@ public class Produto {
     }
 
     public Long getId() { return id; }
+
+    public void atualizar(Categoria categoria, String nomeProduto, String descricao, BigDecimal preco, Integer quantidade, String urlFoto) {
+        validarCamposObrigatorios(categoria, nomeProduto, preco, quantidade);
+
+        this.categoria = categoria;
+        this.nomeProduto = nomeProduto;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.urlFoto = urlFoto;
+    }
 }

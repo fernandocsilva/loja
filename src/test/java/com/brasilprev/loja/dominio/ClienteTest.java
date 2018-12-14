@@ -1,25 +1,56 @@
 package com.brasilprev.loja.dominio;
 
 import com.brasilprev.loja.builder.EnderecoBuilder;
+import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 public class ClienteTest {
+    private String nome;
+    private String email;
+    private String senha;
+    private Endereco endereco;
+
+    @Before
+    public void Init(){
+        nome = "Fulano";
+        email = "fulano@email.com";
+        senha = "senha123";
+        endereco = EnderecoBuilder.umEndereco().build();
+    }
+
     @Test
     public void deveCriarUmCliente(){
-        String nomeEsperado = "Fulano";
-        String emailEsperado = "fulano@email.com";
-        String senhaEsperada = "senha123";
-        Endereco enderecoEsperado = EnderecoBuilder.umEndereco().build();
+        Cliente clienteCriado = Cliente.criar(nome, email, senha, endereco);
 
-        Cliente clienteCriado = Cliente.criar(nomeEsperado, emailEsperado, senhaEsperada, enderecoEsperado);
+        Assert.assertEquals(nome, clienteCriado.getNome());
+        Assert.assertEquals(email, clienteCriado.getEmail());
+        Assert.assertEquals(senha, clienteCriado.getSenha());
+        Assert.assertEquals(endereco, clienteCriado.getEndereco());
+    }
 
-        Assert.assertEquals(nomeEsperado, clienteCriado.getNome());
-        Assert.assertEquals(emailEsperado, clienteCriado.getEmail());
-        Assert.assertEquals(senhaEsperada, clienteCriado.getSenha());
-        Assert.assertEquals(enderecoEsperado, clienteCriado.getEndereco());
+    @Test(expected = ExcecaoDeCampoObrigatorio.class)
+    public void naoDeveCriarUmClienteSemNome(){
+        String nomeVazio = null;
+
+        Cliente clienteCriado = Cliente.criar(nomeVazio, email, senha, endereco);
+    }
+
+    @Test(expected = ExcecaoDeCampoObrigatorio.class)
+    public void naoDeveCriarUmClienteSemEmail(){
+        String emailVazio = null;
+
+        Cliente clienteCriado = Cliente.criar(nome, emailVazio, senha, endereco);
+    }
+
+    @Test(expected = ExcecaoDeCampoObrigatorio.class)
+    public void naoDeveCriarUmClienteSemSenha(){
+        String senhaVazia = null;
+
+        Cliente clienteCriado = Cliente.criar(nome, email, senhaVazia, endereco);
     }
 }
