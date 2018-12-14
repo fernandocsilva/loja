@@ -1,6 +1,6 @@
 package com.brasilprev.loja.dominio;
 
-import com.brasilprev.loja.builder.ClientBuilder;
+import com.brasilprev.loja.builder.ClienteBuilder;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class PedidoTest {
     public void deveCriarUmPedido(){
         LocalDateTime dataDoPedido = LocalDateTime.now();
         StatusDoPedido statusDoPedido = StatusDoPedido.ABERTO;
-        Cliente cliente = ClientBuilder.umCliente().build();
+        Cliente cliente = ClienteBuilder.umCliente().build();
 
         Pedido pedido = Pedido.criar(cliente);
 

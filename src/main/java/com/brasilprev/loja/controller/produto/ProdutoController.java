@@ -1,9 +1,7 @@
-package com.brasilprev.loja.controller;
+package com.brasilprev.loja.controller.produto;
 
-import com.brasilprev.loja.servico.produto.IServicoDeAtualizacaoDeProduto;
-import com.brasilprev.loja.servico.produto.IServicoDeConsultaDeProduto;
-import com.brasilprev.loja.servico.produto.IServicoDeCriacaoDeProduto;
-import com.brasilprev.loja.servico.produto.ProdutoDTO;
+import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
+import com.brasilprev.loja.servico.produto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +17,15 @@ public class ProdutoController {
     private IServicoDeConsultaDeProduto servicoDeConsultaDeProduto;
     private IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto;
     private IServicoDeAtualizacaoDeProduto servicoDeAtualizacaoDeProduto;
-//    private IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto;
+    private IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto;
 
     @Autowired
     public ProdutoController(IServicoDeConsultaDeProduto servicoDeConsultaDeProduto, IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto,
-                             IServicoDeAtualizacaoDeProduto servicoDeAtualizacaoDeProduto) {
+                             IServicoDeAtualizacaoDeProduto servicoDeAtualizacaoDeProduto, IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto) {
         this.servicoDeConsultaDeProduto = servicoDeConsultaDeProduto;
         this.servicoDeCriacaoDeProduto = servicoDeCriacaoDeProduto;
         this.servicoDeAtualizacaoDeProduto = servicoDeAtualizacaoDeProduto;
+        this.servicoDeExclusaoDeProduto = servicoDeExclusaoDeProduto;
     }
 
     @GetMapping
@@ -61,7 +60,8 @@ public class ProdutoController {
 
     @DeleteMapping("/id")
     public ResponseEntity excluirProduto(@PathVariable(value = "id") Long id){
+        servicoDeExclusaoDeProduto.excluir(id);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

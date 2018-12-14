@@ -1,10 +1,10 @@
-package com.brasilprev.loja.controller;
+package com.brasilprev.loja.controller.produto;
 
 import com.brasilprev.loja.servico.categoria.CategoriaDTO;
 
 import java.math.BigDecimal;
 
-public class AdicionaProdutoHttpDto {
+public class AtualizaProdutoHttpDto {
     public Long idDaCategoria;
     public String nomeProduto;
     public BigDecimal preco;

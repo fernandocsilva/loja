@@ -21,7 +21,7 @@ public class ExcecaoDeCampoObrigatorio extends ExcecaoDeRegraDeNegocio {
     }
 
     public ExcecaoDeCampoObrigatorio quandoNuloOuVazio(String objeto, String mensagemDeErro){
-        if(objeto != null && objeto != ""){
+        if(objeto == null || objeto == ""){
             erros.add(mensagemDeErro);
         }
 

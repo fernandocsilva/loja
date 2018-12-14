@@ -1,6 +1,6 @@
 package com.brasilprev.loja.servico.produto;
 
-import com.brasilprev.loja.controller.AtualizaProdutoHttpDto;
+import com.brasilprev.loja.controller.produto.AtualizaProdutoHttpDto;
 import com.brasilprev.loja.dominio.Categoria;
 import com.brasilprev.loja.dominio.Produto;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
