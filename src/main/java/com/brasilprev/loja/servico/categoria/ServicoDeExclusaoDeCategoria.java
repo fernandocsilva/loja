@@ -2,7 +2,9 @@ package com.brasilprev.loja.servico.categoria;
 
 import com.brasilprev.loja.infra.produto.CategoriaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ServicoDeExclusaoDeCategoria implements IServicoDeExclusaoDeCategoria {
     private CategoriaRepositorio categoriaRepositorio;
 

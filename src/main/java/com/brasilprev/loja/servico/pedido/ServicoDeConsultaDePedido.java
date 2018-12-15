@@ -8,11 +8,13 @@ import com.brasilprev.loja.infra.produto.PedidoRepositorio;
 import com.brasilprev.loja.servico.cliente.ClienteDTO;
 import com.brasilprev.loja.servico.endereco.EnderecoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class ServicoDeConsultaDePedido implements IServicoDeConsultaDePedido {
     private PedidoRepositorio pedidoRepositorio;
 

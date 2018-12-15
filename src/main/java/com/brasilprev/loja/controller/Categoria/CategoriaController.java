@@ -14,15 +14,16 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/v1/categorias")
 public class CategoriaController {
-
     private IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria;
     private IServicoDeCriacaoDeCategoria servicoDeCriacaoDeCategoria;
     private IServicoDeAtualizacaoDeCategoria servicoDeAtualizacaoDeCategoria;
     private IServicoDeExclusaoDeCategoria servicoDeExclusaoDeCategoria;
 
     @Autowired
-    public CategoriaController(IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria, IServicoDeCriacaoDeCategoria servicoDeCriacaoDeCategoria,
-                               IServicoDeAtualizacaoDeCategoria servicoDeAtualizacaoDeCategoria, IServicoDeExclusaoDeCategoria servicoDeExclusaoDeCategoria) {
+    public CategoriaController(IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria,
+                               IServicoDeCriacaoDeCategoria servicoDeCriacaoDeCategoria,
+                               IServicoDeAtualizacaoDeCategoria servicoDeAtualizacaoDeCategoria,
+                               IServicoDeExclusaoDeCategoria servicoDeExclusaoDeCategoria) {
         this.servicoDeConsultaDeCategoria = servicoDeConsultaDeCategoria;
         this.servicoDeCriacaoDeCategoria = servicoDeCriacaoDeCategoria;
         this.servicoDeAtualizacaoDeCategoria = servicoDeAtualizacaoDeCategoria;

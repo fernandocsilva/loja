@@ -5,9 +5,11 @@ import com.brasilprev.loja.dominio.Pedido;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
 import com.brasilprev.loja.infra.produto.PedidoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ServicoDeAtualizacaoDePedido implements IServicoDeAtualizacaoDePedido {
     private PedidoRepositorio pedidoRepositorio;
 

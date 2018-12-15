@@ -6,11 +6,13 @@ import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
 import com.brasilprev.loja.infra.produto.ClienteRepositorio;
 import com.brasilprev.loja.servico.endereco.EnderecoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class ServicoDeConsultaDeCliente implements IServicoDeConsultaDeCliente {
 
     private ClienteRepositorio clienteRepositorio;

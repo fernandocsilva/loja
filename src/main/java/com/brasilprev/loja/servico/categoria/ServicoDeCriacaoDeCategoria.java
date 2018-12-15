@@ -5,7 +5,9 @@ import com.brasilprev.loja.controller.categoria.AdicionaCategoriaHttpDto;
 import com.brasilprev.loja.dominio.Categoria;
 import com.brasilprev.loja.infra.produto.CategoriaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ServicoDeCriacaoDeCategoria implements IServicoDeCriacaoDeCategoria {
     private CategoriaRepositorio categoriaRepositorio;
 

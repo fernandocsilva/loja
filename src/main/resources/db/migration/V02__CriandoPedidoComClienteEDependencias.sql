@@ -5,7 +5,7 @@ create table cliente (
         senha varchar(255),
         endereco_id int8,
         primary key (id)
-    )
+    );
 
     create table endereco (
        id  bigserial not null,
@@ -15,7 +15,7 @@ create table cliente (
         estado varchar(255),
         rua varchar(255),
         primary key (id)
-    )
+    );
 
     create table pedido (
        id  bigserial not null,
@@ -23,7 +23,7 @@ create table cliente (
         status_do_pedido int4,
         cliente_id int8,
         primary key (id)
-    )
+    );
 
     create table pedido_item (
        id  bigserial not null,
@@ -33,24 +33,24 @@ create table cliente (
         pedido_id int8,
         produto_id int8,
         primary key (id)
-    )
+    );
 
     alter table if exists cliente
        add constraint FK64nr9yt889by5lufr1boo5i4s
        foreign key (endereco_id)
-       references endereco
+       references endereco;
 
     alter table if exists pedido
        add constraint FK30s8j2ktpay6of18lbyqn3632
        foreign key (cliente_id)
-       references cliente
+       references cliente;
 
     alter table if exists pedido_item
        add constraint FKeyouxfvoi291lpo5168e6wpej
        foreign key (pedido_id)
-       references pedido
+       references pedido;
 
     alter table if exists pedido_item
        add constraint FK8eyfr31j751fjws2y012awmpg
        foreign key (produto_id)
-       references produto
+       references produto;

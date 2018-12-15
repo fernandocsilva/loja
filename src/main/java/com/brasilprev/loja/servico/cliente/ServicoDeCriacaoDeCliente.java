@@ -6,9 +6,11 @@ import com.brasilprev.loja.dominio.Cliente;
 import com.brasilprev.loja.dominio.Endereco;
 import com.brasilprev.loja.infra.produto.EnderecoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ServicoDeCriacaoDeCliente implements IServicoDeCriacaoDeCliente {
     private EnderecoRepositorio enderecoRepositorio;
 

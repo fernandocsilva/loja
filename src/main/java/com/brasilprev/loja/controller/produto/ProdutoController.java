@@ -57,7 +57,7 @@ public class ProdutoController {
         return new ResponseEntity<>(confirmacaoDeSucesso, HttpStatus.CREATED);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza um produto")
     public ResponseEntity alterarProduto(@PathVariable(value = "id") Long id, AtualizaProdutoHttpDto atualizaProdutoHttpDto){
         servicoDeAtualizacaoDeProduto.atualizar(id, atualizaProdutoHttpDto);
@@ -65,7 +65,7 @@ public class ProdutoController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Exclui um produto")
     public ResponseEntity excluirProduto(@PathVariable(value = "id") Long id){
         servicoDeExclusaoDeProduto.excluir(id);
