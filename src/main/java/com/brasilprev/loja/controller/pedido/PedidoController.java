@@ -1,30 +1,32 @@
 package com.brasilprev.loja.controller.pedido;
 
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
-import com.brasilprev.loja.servico.pedido.IServicoDeConsultaDePedido;
-import com.brasilprev.loja.servico.pedido.IServicoDeCriacaoDePedido;
-import com.brasilprev.loja.servico.pedido.PedidoDTO;
+import com.brasilprev.loja.servico.pedido.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/v1/pedidos")
-public class PedidioController {
+public class PedidoController {
     private IServicoDeConsultaDePedido servicoDeConsultaDePedido;
     private IServicoDeCriacaoDePedido servicoDeCriacaoDePedido;
+    private IServicoDeAtualizacaoDePedido servicoDeAtualizacaoDePedido;
+    private IServicoDeExclusaoDePedido servicoDeExclusaoDePedido;
 
     @Autowired
-    public PedidioController(IServicoDeConsultaDePedido servicoDeConsultaDePedido, IServicoDeCriacaoDePedido servicoDeCriacaoDePedido) {
+    public PedidoController(IServicoDeConsultaDePedido servicoDeConsultaDePedido,
+                            IServicoDeCriacaoDePedido servicoDeCriacaoDePedido,
+                            IServicoDeAtualizacaoDePedido servicoDeAtualizacaoDePedido,
+                            IServicoDeExclusaoDePedido servicoDeExclusaoDePedido) {
         this.servicoDeConsultaDePedido = servicoDeConsultaDePedido;
         this.servicoDeCriacaoDePedido = servicoDeCriacaoDePedido;
+        this.servicoDeAtualizacaoDePedido = servicoDeAtualizacaoDePedido;
+        this.servicoDeExclusaoDePedido = servicoDeExclusaoDePedido;
     }
 
     @GetMapping
@@ -46,5 +48,19 @@ public class PedidioController {
         ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDePedido.criar(adicionaPedidoHttpDto);
 
         return new ResponseEntity<>(confirmacaoDeSucesso, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity cancelarPedido(@PathVariable(value = "id") Long id, AtualizaPedidoHttpDto atualizaPedidoHttpDto){
+        servicoDeAtualizacaoDePedido.atualizar(id, atualizaPedidoHttpDto);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluirPedido(@PathVariable(value = "id") Long id){
+        servicoDeExclusaoDePedido.excluir(id);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
