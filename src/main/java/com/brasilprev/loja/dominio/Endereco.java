@@ -15,4 +15,24 @@ public class Endereco {
         this.cep = cep;
         this.estado = estado;
     }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

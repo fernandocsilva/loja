@@ -1,8 +1,6 @@
-package com.brasilprev.loja.controller.Categoria;
+package com.brasilprev.loja.controller.categoria;
 
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
-import com.brasilprev.loja.controller.categoria.AdicionaCategoriaHttpDto;
-import com.brasilprev.loja.controller.categoria.AtualizaCategoriaHttpDto;
 import com.brasilprev.loja.servico.categoria.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -32,6 +32,10 @@ public class Pedido {
         new ExcecaoDeCampoObrigatorio().quandoNulo(cliente, "Informe um cliente para criar um pedido.").entaoDispara();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public LocalDateTime getDataDoPedido() {
         return dataDoPedido;
     }

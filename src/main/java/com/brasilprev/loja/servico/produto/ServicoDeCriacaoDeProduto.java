@@ -26,7 +26,7 @@ public class ServicoDeCriacaoDeProduto implements IServicoDeCriacaoDeProduto {
     public ConfirmacaoDeSucesso criar(AdicionaProdutoHttpDto adicionaProdutoHttpDto) {
         Optional<Categoria> categoria = categoriaRepositorio.findById(adicionaProdutoHttpDto.idDaCategoria);
 
-        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Categoria não encontrada."));
+        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("categoria não encontrada."));
 
         Produto produto = Produto.criar(categoria.get(), adicionaProdutoHttpDto.nomeProduto, adicionaProdutoHttpDto.preco,
                 adicionaProdutoHttpDto.quantidade, adicionaProdutoHttpDto.descricao, adicionaProdutoHttpDto.urlFoto);

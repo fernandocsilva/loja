@@ -38,7 +38,7 @@ public class ServicoDeAtualizacaoDeProduto implements IServicoDeAtualizacaoDePro
 
     private Categoria obterCategoria(AtualizaProdutoHttpDto atualizaProdutoHttpDto) {
         Optional<Categoria> categoria = categoriaRepositorio.findById(atualizaProdutoHttpDto.idDaCategoria);
-        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Categoria não encontrada."));
+        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("categoria não encontrada."));
 
         return categoria.get();
     }

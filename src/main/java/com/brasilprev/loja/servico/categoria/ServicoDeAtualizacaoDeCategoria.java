@@ -20,7 +20,7 @@ public class ServicoDeAtualizacaoDeCategoria implements IServicoDeAtualizacaoDeC
     public void atualizar(Long id, AtualizaCategoriaHttpDto atualizaCategoriaHttpDto) {
         Optional<Categoria> categoria = categoriaRepositorio.findById(id);
 
-        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Categoria não encontrada."));
+        categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("categoria não encontrada."));
 
         categoria.get().atualizar(atualizaCategoriaHttpDto.nome);
     }
