@@ -35,4 +35,8 @@ public class Categoria {
     public String getNome() {
         return nome;
     }
+
+    public void atualizar(String nome) {
+        this.nome = nome;
+    }
 }

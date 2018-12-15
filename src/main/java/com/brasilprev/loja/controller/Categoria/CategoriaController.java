@@ -1,14 +1,14 @@
 package com.brasilprev.loja.controller.Categoria;
 
-import com.brasilprev.loja.servico.categoria.CategoriaDTO;
-import com.brasilprev.loja.servico.categoria.IServicoDeConsultaDeCategoria;
+import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
+import com.brasilprev.loja.controller.categoria.AdicionaCategoriaHttpDto;
+import com.brasilprev.loja.controller.categoria.AtualizaCategoriaHttpDto;
+import com.brasilprev.loja.servico.categoria.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +18,17 @@ import java.util.Optional;
 public class CategoriaController {
 
     private IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria;
+    private IServicoDeCriacaoDeCategoria servicoDeCriacaoDeCategoria;
+    private IServicoDeAtualizacaoDeCategoria servicoDeAtualizacaoDeCategoria;
+    private IServicoDeExclusaoDeCategoria servicoDeExclusaoDeCategoria;
 
     @Autowired
-    public CategoriaController(IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria) {
+    public CategoriaController(IServicoDeConsultaDeCategoria servicoDeConsultaDeCategoria, IServicoDeCriacaoDeCategoria servicoDeCriacaoDeCategoria,
+                               IServicoDeAtualizacaoDeCategoria servicoDeAtualizacaoDeCategoria, IServicoDeExclusaoDeCategoria servicoDeExclusaoDeCategoria) {
         this.servicoDeConsultaDeCategoria = servicoDeConsultaDeCategoria;
+        this.servicoDeCriacaoDeCategoria = servicoDeCriacaoDeCategoria;
+        this.servicoDeAtualizacaoDeCategoria = servicoDeAtualizacaoDeCategoria;
+        this.servicoDeExclusaoDeCategoria = servicoDeExclusaoDeCategoria;
     }
 
     @GetMapping
@@ -36,5 +43,26 @@ public class CategoriaController {
         Optional<CategoriaDTO> categoriaDTOEncontrada = servicoDeConsultaDeCategoria.obterPor(id);
 
         return new ResponseEntity<>(categoriaDTOEncontrada.get(), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ConfirmacaoDeSucesso> criarCategoria(AdicionaCategoriaHttpDto adicionaCategoriaHttpDto){
+        ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDeCategoria.criar(adicionaCategoriaHttpDto);
+
+        return new ResponseEntity<>(confirmacaoDeSucesso, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity alterarCategoria(@PathVariable(value = "id") Long id, AtualizaCategoriaHttpDto atualizaCategoriaHttpDto){
+        servicoDeAtualizacaoDeCategoria.atualizar(id, atualizaCategoriaHttpDto);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluirCategoria(@PathVariable(value = "id") Long id){
+        servicoDeExclusaoDeCategoria.excluir(id);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
