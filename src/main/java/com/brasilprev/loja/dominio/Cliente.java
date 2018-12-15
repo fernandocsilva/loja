@@ -1,5 +1,6 @@
 package com.brasilprev.loja.dominio;
 
+import com.brasilprev.loja.controller.cliente.AtualizaClienteHttpDto;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
 
 import javax.persistence.*;
@@ -53,5 +54,11 @@ public class Cliente {
 
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    public void alterar(AtualizaClienteHttpDto atualizaClienteHttpDto) {
+        this.nome = atualizaClienteHttpDto.nome;
+        this.email = atualizaClienteHttpDto.email;
+        this.senha = atualizaClienteHttpDto.senha;
     }
 }

@@ -1,7 +1,14 @@
 package com.brasilprev.loja.dominio;
 
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Endereco {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String rua;
     private String cidade;
     private String bairro;
@@ -14,6 +21,10 @@ public class Endereco {
         this.bairro = bairro;
         this.cep = cep;
         this.estado = estado;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getRua() {
