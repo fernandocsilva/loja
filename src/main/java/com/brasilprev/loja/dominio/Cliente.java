@@ -13,6 +13,7 @@ public class Cliente {
     private String nome;
     private String email;
     private String senha;
+    @ManyToOne
     private Endereco endereco;
 
     private Cliente(String nome, String email, String senha, Endereco endereco) {

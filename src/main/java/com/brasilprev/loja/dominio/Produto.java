@@ -1,8 +1,6 @@
 package com.brasilprev.loja.dominio;
 
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
-import com.brasilprev.loja.servico.categoria.CategoriaDTO;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
