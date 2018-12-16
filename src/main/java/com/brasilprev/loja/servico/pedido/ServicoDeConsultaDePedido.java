@@ -4,7 +4,7 @@ import com.brasilprev.loja.dominio.Cliente;
 import com.brasilprev.loja.dominio.Endereco;
 import com.brasilprev.loja.dominio.Pedido;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
-import com.brasilprev.loja.infra.produto.PedidoRepositorio;
+import com.brasilprev.loja.infra.repositorios.PedidoRepositorio;
 import com.brasilprev.loja.servico.cliente.ClienteDTO;
 import com.brasilprev.loja.servico.endereco.EnderecoDTO;
 import org.springframework.beans.factory.annotation.Autowired;

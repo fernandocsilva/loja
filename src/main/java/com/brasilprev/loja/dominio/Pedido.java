@@ -16,6 +16,8 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
+    private Pedido(){}
+
     private Pedido(LocalDateTime dataDoPedido, StatusDoPedido statusDoPedido, Cliente cliente){
         this.dataDoPedido = dataDoPedido;
         this.statusDoPedido = statusDoPedido;

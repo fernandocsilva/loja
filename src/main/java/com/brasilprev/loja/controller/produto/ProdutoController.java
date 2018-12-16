@@ -23,8 +23,10 @@ public class ProdutoController {
     private IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto;
 
     @Autowired
-    public ProdutoController(IServicoDeConsultaDeProduto servicoDeConsultaDeProduto, IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto,
-                             IServicoDeAtualizacaoDeProduto servicoDeAtualizacaoDeProduto, IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto) {
+    public ProdutoController(IServicoDeConsultaDeProduto servicoDeConsultaDeProduto,
+                             IServicoDeCriacaoDeProduto servicoDeCriacaoDeProduto,
+                             IServicoDeAtualizacaoDeProduto servicoDeAtualizacaoDeProduto,
+                             IServicoDeExclusaoDeProduto servicoDeExclusaoDeProduto) {
         this.servicoDeConsultaDeProduto = servicoDeConsultaDeProduto;
         this.servicoDeCriacaoDeProduto = servicoDeCriacaoDeProduto;
         this.servicoDeAtualizacaoDeProduto = servicoDeAtualizacaoDeProduto;

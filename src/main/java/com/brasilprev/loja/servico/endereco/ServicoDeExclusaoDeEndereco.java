@@ -1,6 +1,6 @@
 package com.brasilprev.loja.servico.endereco;
 
-import com.brasilprev.loja.infra.produto.EnderecoRepositorio;
+import com.brasilprev.loja.infra.repositorios.EnderecoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

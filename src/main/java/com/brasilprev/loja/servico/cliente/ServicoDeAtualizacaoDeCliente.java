@@ -3,7 +3,7 @@ package com.brasilprev.loja.servico.cliente;
 import com.brasilprev.loja.controller.cliente.AtualizaClienteHttpDto;
 import com.brasilprev.loja.dominio.Cliente;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
-import com.brasilprev.loja.infra.produto.ClienteRepositorio;
+import com.brasilprev.loja.infra.repositorios.ClienteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

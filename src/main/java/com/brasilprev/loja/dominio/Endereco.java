@@ -19,6 +19,8 @@ public class Endereco {
     private String cep;
     private String estado;
 
+    private Endereco(){}
+
     private Endereco(String rua, String cidade, String bairro, String cep, String estado) {
         this.rua = rua;
         this.cidade = cidade;
@@ -68,10 +70,10 @@ public class Endereco {
     }
 
     public void atualizar(String rua, String bairro, String cep, String cidade, String estado) {
-        this.rua = rua;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.rua = rua != null && rua != "" ? rua : this.rua;
+        this.bairro = bairro != null && bairro != "" ? rua : this.bairro;
+        this.cep = cep != null && cep != "" ? rua : this.cep;
+        this.cidade = cidade != null && cidade != "" ? rua : this.cidade;
+        this.estado = estado != null && estado != "" ? rua : this.estado;
     }
 }

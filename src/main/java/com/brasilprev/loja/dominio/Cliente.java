@@ -16,6 +16,8 @@ public class Cliente {
     @ManyToOne
     private Endereco endereco;
 
+    private Cliente(){}
+
     private Cliente(String nome, String email, String senha, Endereco endereco) {
         this.nome = nome;
         this.email = email;

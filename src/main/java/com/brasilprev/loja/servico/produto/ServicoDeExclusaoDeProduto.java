@@ -1,6 +1,6 @@
 package com.brasilprev.loja.servico.produto;
 
-import com.brasilprev.loja.infra.produto.ProdutoRepositorio;
+import com.brasilprev.loja.infra.repositorios.ProdutoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.brasilprev.loja.servico.produto;
 
 import com.brasilprev.loja.dominio.Produto;
-import com.brasilprev.loja.infra.produto.ProdutoRepositorio;
+import com.brasilprev.loja.infra.repositorios.ProdutoRepositorio;
 import com.brasilprev.loja.servico.categoria.CategoriaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,9 +41,11 @@ public class ServicoDeConsultaDeProduto implements IServicoDeConsultaDeProduto {
 
     private ProdutoDTO montarProdutoDTO(Produto produto) {
         CategoriaDTO categoriaDTO = new CategoriaDTO();
+        categoriaDTO.id = produto.getCategoria().getId();
         categoriaDTO.nome = produto.getCategoria().getNome();
 
         ProdutoDTO produtoDTO = new ProdutoDTO();
+        produtoDTO.id = produto.getId();
         produtoDTO.nomeProduto = produto.getNomeProduto();
         produtoDTO.categoria = categoriaDTO;
         produtoDTO.descricao = produto.getDescricao();

@@ -4,7 +4,7 @@ import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
 import com.brasilprev.loja.controller.cliente.AdicionaClienteHttpDto;
 import com.brasilprev.loja.dominio.Cliente;
 import com.brasilprev.loja.dominio.Endereco;
-import com.brasilprev.loja.infra.produto.EnderecoRepositorio;
+import com.brasilprev.loja.infra.repositorios.EnderecoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

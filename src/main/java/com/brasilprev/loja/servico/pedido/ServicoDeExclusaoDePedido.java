@@ -3,7 +3,7 @@ package com.brasilprev.loja.servico.pedido;
 import com.brasilprev.loja.dominio.Pedido;
 import com.brasilprev.loja.dominio.StatusDoPedido;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
-import com.brasilprev.loja.infra.produto.PedidoRepositorio;
+import com.brasilprev.loja.infra.repositorios.PedidoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -7,8 +7,8 @@ import com.brasilprev.loja.dominio.Pedido;
 import com.brasilprev.loja.dominio.PedidoItem;
 import com.brasilprev.loja.dominio.Produto;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
-import com.brasilprev.loja.infra.produto.ClienteRepositorio;
-import com.brasilprev.loja.infra.produto.ProdutoRepositorio;
+import com.brasilprev.loja.infra.repositorios.ClienteRepositorio;
+import com.brasilprev.loja.infra.repositorios.ProdutoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
