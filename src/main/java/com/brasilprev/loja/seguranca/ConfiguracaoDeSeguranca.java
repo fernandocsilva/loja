@@ -15,7 +15,6 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().authorizeRequests()
-//                .antMatchers("/v1/produtos").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -34,12 +33,8 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
             .passwordEncoder(
                 NoOpPasswordEncoder.getInstance())
-                .withUser("user")
-                .password("password")
-                .roles("USER")
-                .and()
-                .withUser("sysuser")
-                .password("password")
-                .roles("SYSTEM");
+                .withUser("admin")
+                .password("123456")
+                .roles("USER");
     }
 }
