@@ -48,12 +48,12 @@ public class ProdutoController {
 
         return produtoDTOEncontrado
                 .map((produtoDTO) -> new ResponseEntity<>(produtoDTO, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping
     @ApiOperation(value = "Cria um produto")
-    public ResponseEntity<ConfirmacaoDeSucesso> criarProduto(AdicionaProdutoHttpDto adicionaProdutoHttpDto){
+    public ResponseEntity<ConfirmacaoDeSucesso> criarProduto(@RequestBody AdicionaProdutoHttpDto adicionaProdutoHttpDto){
         ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDeProduto.criar(adicionaProdutoHttpDto);
 
         return new ResponseEntity<>(confirmacaoDeSucesso, HttpStatus.CREATED);
@@ -61,7 +61,7 @@ public class ProdutoController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualiza um produto")
-    public ResponseEntity alterarProduto(@PathVariable(value = "id") Long id, AtualizaProdutoHttpDto atualizaProdutoHttpDto){
+    public ResponseEntity alterarProduto(@PathVariable(value = "id") Long id, @RequestBody AtualizaProdutoHttpDto atualizaProdutoHttpDto){
         servicoDeAtualizacaoDeProduto.atualizar(id, atualizaProdutoHttpDto);
 
         return new ResponseEntity(HttpStatus.OK);

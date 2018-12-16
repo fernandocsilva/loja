@@ -4,6 +4,7 @@ import com.brasilprev.loja.controller.produto.AdicionaProdutoHttpDto;
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
 import com.brasilprev.loja.dominio.Categoria;
 import com.brasilprev.loja.dominio.Produto;
+import com.brasilprev.loja.dominio.excecao.ExcecaoDeCampoObrigatorio;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
 import com.brasilprev.loja.infra.repositorios.CategoriaRepositorio;
 import com.brasilprev.loja.infra.repositorios.ProdutoRepositorio;
@@ -26,6 +27,10 @@ public class ServicoDeCriacaoDeProduto implements IServicoDeCriacaoDeProduto {
 
     @Override
     public ConfirmacaoDeSucesso criar(AdicionaProdutoHttpDto adicionaProdutoHttpDto) {
+        new ExcecaoDeCampoObrigatorio()
+                .quandoNulo(adicionaProdutoHttpDto.idDaCategoria, "Identificador da categoria é obrigatório.")
+                .entaoDispara();
+
         Optional<Categoria> categoria = categoriaRepositorio.findById(adicionaProdutoHttpDto.idDaCategoria);
 
         categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("categoria não encontrada."));
