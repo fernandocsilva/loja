@@ -2,6 +2,8 @@ package com.brasilprev.loja.controller.pedido;
 
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
 import com.brasilprev.loja.servico.pedido.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/v1/pedidos")
+@Api(value = "Recursos dos pedidos", description = "Operações referentes aos pedidos")
 public class PedidoController {
     private IServicoDeConsultaDePedido servicoDeConsultaDePedido;
     private IServicoDeCriacaoDePedido servicoDeCriacaoDePedido;
@@ -30,6 +33,7 @@ public class PedidoController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Retorna uma lista com todos os pedidos cadastrados")
     public ResponseEntity<List<PedidoDTO>> obterTodosOsPedidos(){
         List<PedidoDTO> pedidosDTO = servicoDeConsultaDePedido.obterTodos();
 
@@ -37,6 +41,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Retorna um pedido com o identificador informado")
     public ResponseEntity<PedidoDTO> obterPedido(@PathVariable(value = "id") Long id){
         PedidoDTO pedidoDTO = servicoDeConsultaDePedido.obterPor(id);
 
@@ -44,6 +49,7 @@ public class PedidoController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Cria um pedido")
     public ResponseEntity<ConfirmacaoDeSucesso> criarPedido(AdicionaPedidoHttpDto adicionaPedidoHttpDto){
         ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDePedido.criar(adicionaPedidoHttpDto);
 
@@ -51,14 +57,16 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity cancelarPedido(@PathVariable(value = "id") Long id, AtualizaPedidoHttpDto atualizaPedidoHttpDto){
+    @ApiOperation(value = "Atualiza um pedido")
+    public ResponseEntity alterarPedido(@PathVariable(value = "id") Long id, AtualizaPedidoHttpDto atualizaPedidoHttpDto){
         servicoDeAtualizacaoDePedido.atualizar(id, atualizaPedidoHttpDto);
 
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluirPedido(@PathVariable(value = "id") Long id){
+    @ApiOperation(value = "Cancela um pedido")
+    public ResponseEntity cancelarPedido(@PathVariable(value = "id") Long id){
         servicoDeExclusaoDePedido.excluir(id);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

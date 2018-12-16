@@ -1,7 +1,6 @@
-package com.brasilprev.loja.servico.endereco;
+package com.brasilprev.loja.controller.endereco;
 
-public class EnderecoDTO {
-    public Long id;
+public class AtualizaEnderecoHttpDto {
     public String rua;
     public String cidade;
     public String bairro;

@@ -17,6 +17,6 @@ public class EnderecoBuilder {
     }
 
     public Endereco build(){
-        return new Endereco(rua, cidade, bairro, cep, estado);
+        return Endereco.criar(rua, cidade, bairro, cep, estado);
     }
 }

@@ -2,6 +2,8 @@ package com.brasilprev.loja.controller.cliente;
 
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
 import com.brasilprev.loja.servico.cliente.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/v1/clientes")
+@Api(value = "Recursos do cliente", description = "Operações referentes aos clientes")
 public class ClienteController {
     private IServicoDeConsultaDeCliente servicoDeConsultaDeCliente;
     private IServicoDeCriacaoDeCliente servicoDeCriacaoDeCliente;
@@ -30,6 +33,7 @@ public class ClienteController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Retorna uma lista com todos os clientes cadastrados")
     public ResponseEntity<List<ClienteDTO>> obterTodosOsClientes(){
         List<ClienteDTO> clientesDTO = servicoDeConsultaDeCliente.obterTodos();
 
@@ -37,6 +41,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Retorna um cliente com o identificador informado")
     public ResponseEntity<ClienteDTO> obterCliente(@PathVariable(value = "id") Long id){
         ClienteDTO clienteDTO = servicoDeConsultaDeCliente.obterPor(id);
 
@@ -44,6 +49,7 @@ public class ClienteController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Cria um cliente")
     public ResponseEntity<ConfirmacaoDeSucesso> criarCliente(AdicionaClienteHttpDto adicionaClienteHttpDto){
         ConfirmacaoDeSucesso confirmacaoDeSucesso = servicoDeCriacaoDeCliente.criar(adicionaClienteHttpDto);
 
@@ -51,6 +57,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "Atualiza um cliente")
     public ResponseEntity alterarCliente(@PathVariable(value = "id") Long id, AtualizaClienteHttpDto atualizaClienteHttpDto){
         servicoDeAtualizacaoDeCliente.alterar(id, atualizaClienteHttpDto);
 
@@ -58,6 +65,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Deleta um cliente")
     public ResponseEntity excluirCliente(@PathVariable(value = "id") Long id){
         servicoDeExclusaoDeCliente.excluir(id);
 

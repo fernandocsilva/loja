@@ -32,7 +32,7 @@ public class ProdutoController {
     }
 
     @GetMapping
-    @ApiOperation(value = "Retorna uma lista com todos os produtos")
+    @ApiOperation(value = "Retorna uma lista com todos os produtos cadastrados")
     public ResponseEntity<List<ProdutoDTO>> obterTodosOsProdutos(){
         List<ProdutoDTO> produtoDTOS = servicoDeConsultaDeProduto.obterTodos();
 
