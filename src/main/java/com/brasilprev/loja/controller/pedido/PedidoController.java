@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/v1/pedidos")
@@ -43,9 +44,11 @@ public class PedidoController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna um pedido com o identificador informado")
     public ResponseEntity<PedidoDTO> obterPedido(@PathVariable(value = "id") Long id){
-        PedidoDTO pedidoDTO = servicoDeConsultaDePedido.obterPor(id);
+        Optional<PedidoDTO> pedidoDTOEncontrado = servicoDeConsultaDePedido.obterPor(id);
 
-        return new ResponseEntity<>(pedidoDTO, HttpStatus.OK);
+        return pedidoDTOEncontrado
+                .map(pedidoDTO -> new ResponseEntity<>(pedidoDTO, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping

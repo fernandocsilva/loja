@@ -46,7 +46,9 @@ public class CategoriaController {
     public ResponseEntity<CategoriaDTO> obterCategoriaPor(@PathVariable(value = "id") Long id){
         Optional<CategoriaDTO> categoriaDTOEncontrada = servicoDeConsultaDeCategoria.obterPor(id);
 
-        return new ResponseEntity<>(categoriaDTOEncontrada.get(), HttpStatus.OK);
+        return categoriaDTOEncontrada
+                .map(categoriaDTO -> new ResponseEntity<>(categoriaDTO, HttpStatus.OK))
+                .orElseGet(() ->  new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/v1/clientes")
@@ -43,9 +44,11 @@ public class ClienteController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna um cliente com o identificador informado")
     public ResponseEntity<ClienteDTO> obterCliente(@PathVariable(value = "id") Long id){
-        ClienteDTO clienteDTO = servicoDeConsultaDeCliente.obterPor(id);
+        Optional<ClienteDTO> clienteDTOEncontrado = servicoDeConsultaDeCliente.obterPor(id);
 
-        return new ResponseEntity<>(clienteDTO, HttpStatus.OK);
+        return clienteDTOEncontrado
+                .map(clienteDTO -> new ResponseEntity<>(clienteDTO, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping

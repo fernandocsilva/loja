@@ -1,8 +1,9 @@
 package com.brasilprev.loja.servico.endereco;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IServicoDeConsultaDeEndereco {
     List<EnderecoDTO> obterTodos();
-    EnderecoDTO obterPor(Long id);
+    Optional<EnderecoDTO> obterPor(Long id);
 }

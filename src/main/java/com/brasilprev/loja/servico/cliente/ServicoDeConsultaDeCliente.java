@@ -32,13 +32,10 @@ public class ServicoDeConsultaDeCliente implements IServicoDeConsultaDeCliente {
     }
 
     @Override
-    public ClienteDTO obterPor(Long id) {
+    public Optional<ClienteDTO> obterPor(Long id) {
         Optional<Cliente> clienteEncontrado = clienteRepositorio.findById(id);
-        clienteEncontrado.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Cliente não encontrado."));
 
-        ClienteDTO clienteDTO = montarClienteDTO(clienteEncontrado.get());
-
-        return clienteDTO;
+        return clienteEncontrado.map(this::montarClienteDTO);
     }
 
     private ClienteDTO montarClienteDTO(Cliente cliente) {

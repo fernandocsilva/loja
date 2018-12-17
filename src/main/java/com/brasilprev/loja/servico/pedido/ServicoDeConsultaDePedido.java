@@ -33,12 +33,10 @@ public class ServicoDeConsultaDePedido implements IServicoDeConsultaDePedido {
     }
 
     @Override
-    public PedidoDTO obterPor(Long id) {
+    public Optional<PedidoDTO> obterPor(Long id) {
         Optional<Pedido> pedidoEncontrado = pedidoRepositorio.findById(id);
 
-        pedidoEncontrado.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Pedido não encontrado."));
-
-        return montarPedidoDTO(pedidoEncontrado.get());
+        return pedidoEncontrado.map(this::montarPedidoDTO);
     }
 
     private PedidoDTO montarPedidoDTO(Pedido pedido) {

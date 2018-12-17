@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/v1/enderecos")
@@ -43,9 +44,11 @@ public class EnderecoController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna o endereço com o identificador informado")
     public ResponseEntity<EnderecoDTO> obterEndereco(@PathVariable(value = "id") Long id){
-        EnderecoDTO enderecoDTO = servicodeConsultaDeEndereco.obterPor(id);
+        Optional<EnderecoDTO> enderecoDTOEncontrado = servicodeConsultaDeEndereco.obterPor(id);
 
-        return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
+        return enderecoDTOEncontrado
+                .map(enderecoDTO -> new ResponseEntity<>(enderecoDTO, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PostMapping

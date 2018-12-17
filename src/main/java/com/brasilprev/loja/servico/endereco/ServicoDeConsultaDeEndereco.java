@@ -30,13 +30,10 @@ public class ServicoDeConsultaDeEndereco implements IServicoDeConsultaDeEndereco
     }
 
     @Override
-    public EnderecoDTO obterPor(Long id) {
+    public Optional<EnderecoDTO> obterPor(Long id) {
         Optional<Endereco> enderecoEncontrado = enderecoRepositorio.findById(id);
-        enderecoEncontrado.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("Endereço não encontrado"));
 
-        EnderecoDTO enderecoDTO = montarEnderecoDTO(enderecoEncontrado.get());
-
-        return enderecoDTO;
+        return enderecoEncontrado.map(this::montarEnderecoDTO);
     }
 
     private EnderecoDTO montarEnderecoDTO(Endereco endereco) {
