@@ -25,5 +25,7 @@ public class ServicoDeAtualizacaoDeCategoria implements IServicoDeAtualizacaoDeC
         categoria.orElseThrow(() -> new ExcecaoDeRegraDeNegocio("categoria não encontrada."));
 
         categoria.get().atualizar(atualizaCategoriaHttpDto.nome);
+
+        categoriaRepositorio.save(categoria.get());
     }
 }

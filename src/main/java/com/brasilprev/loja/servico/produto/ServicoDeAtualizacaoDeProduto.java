@@ -29,6 +29,8 @@ public class ServicoDeAtualizacaoDeProduto implements IServicoDeAtualizacaoDePro
 
         produto.atualizar(categoria, atualizaProdutoHttpDto.nomeProduto, atualizaProdutoHttpDto.descricao,
                 atualizaProdutoHttpDto.preco, atualizaProdutoHttpDto.quantidade, atualizaProdutoHttpDto.urlFoto);
+
+        produtoRepositorio.save(produto);
     }
 
     private Produto obterProduto(Long id) {
