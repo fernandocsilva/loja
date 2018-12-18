@@ -1,23 +1,43 @@
 package com.brasilprev.loja.configuracao;
 
+import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.servlet.ServletContext;
+import java.util.Arrays;
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
+
+    @Bean
+    public Docket api(ServletContext servletContext) {
+        return new Docket(DocumentationType.SWAGGER_2)
+            .select()
+                .apis(RequestHandlerSelectors.basePackage("com.brasilprev.loja.controller"))
+                .build()
+                .securitySchemes(Arrays.asList(apiKey()));
+    }
+
+    private ApiKey apiKey() {
+        return new ApiKey("Bearer", "Authorization", "header");
+    }
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.brasilprev.loja.controller"))
-                .build();
+                .build()
+                .securitySchemes(Lists.newArrayList(apiKey()));
     }
 
     @Override
