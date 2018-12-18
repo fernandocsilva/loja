@@ -14,4 +14,4 @@ Para testar a API, é necessário realizar uma requisição para um endpoint de 
 
 O Token de autenticação estará na aba Headers.
 
-Para acessar os demais métodos, basta incluir o token na autenticação do tipo **Bearer**. Vá para a aba _Authorization_ e informe o tipo (TYPE) **Bearer Token**. Ao lado, no campo _Token_, insira o token gerado pela requisição do login.
+Para acessar os demais métodos, basta incluir o token na autenticação do tipo **Bearer**. Vá para a aba _Authorization_ e informe o tipo (TYPE) **Bearer Token**. Ao lado, no campo _Token_, insira a chave de autenticação gerada pela requisição do login.
