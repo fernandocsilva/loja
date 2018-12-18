@@ -1,6 +1,6 @@
 package com.brasilprev.loja.servico.categoria;
 
-import com.brasilprev.loja.controller.categoriaProduto.AtualizaCategoriaHttpDto;
+import com.brasilprev.loja.controller.categoria.AtualizaCategoriaHttpDto;
 import com.brasilprev.loja.dominio.Categoria;
 import com.brasilprev.loja.dominio.excecao.ExcecaoDeRegraDeNegocio;
 import com.brasilprev.loja.infra.repositorios.CategoriaRepositorio;

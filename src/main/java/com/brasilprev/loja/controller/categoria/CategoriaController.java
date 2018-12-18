@@ -1,4 +1,4 @@
-package com.brasilprev.loja.controller.categoriaProduto;
+package com.brasilprev.loja.controller.categoria;
 
 import com.brasilprev.loja.controller.ConfirmacaoDeSucesso;
 import com.brasilprev.loja.servico.categoria.*;
